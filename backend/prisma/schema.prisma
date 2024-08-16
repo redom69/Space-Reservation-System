@@ -1,0 +1,57 @@
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+  schemas  = ["public", "auth"]  
+}
+
+generator client {
+  provider        = "prisma-client-js"
+  previewFeatures = ["multiSchema"]  
+}
+
+model Role {
+  id    Int    @id @default(autoincrement())
+  name  String @unique
+  users User[]
+
+  @@schema("public")  
+}
+
+model User {
+  id        String   @id @default(uuid())
+  email     String   @unique
+  fullName  String?
+  roleId    Int
+  role      Role     @relation(fields: [roleId], references: [id])
+  reservations Reservation[]
+  createdAt DateTime @default(now())
+
+  @@schema("auth") 
+}
+
+model Space {
+  id          Int           @id @default(autoincrement())
+  name        String
+  description String?
+  capacity    Int
+  reservations Reservation[]
+  createdAt   DateTime       @default(now())
+
+  @@schema("public")  
+}
+
+model Reservation {
+  id        Int      @id @default(autoincrement())
+  userId    String
+  spaceId   Int
+  startTime DateTime
+  endTime   DateTime
+  createdAt DateTime @default(now())
+
+  user  User  @relation(fields: [userId], references: [id])
+  space Space @relation(fields: [spaceId], references: [id])
+
+  @@unique([spaceId, startTime, endTime])
+  @@schema("public") 
+}
