@@ -1,0 +1,15 @@
+[build]
+  command = "npm run build --prefix frontend && npm run build --prefix backend"
+  publish = "frontend/build"
+  functions = "backend/dist"
+
+[dev]
+  command = "npm start --prefix frontend"
+  targetPort = 3000
+  port = 8888
+  functionsPort = 8888
+
+[[redirects]]
+  from = "/api/*"
+  to = "/.netlify/functions/:splat"
+  status = 200
