@@ -3,6 +3,12 @@
   publish = "frontend/build"
   functions = "backend/dist"
 
+[dev]
+  command = "npm start --prefix frontend"
+  targetPort = 3000
+  port = 8888
+  functionsPort = 8889
+
 [[redirects]]
   from = "/api/*"
   to = "/.netlify/functions/:splat"
@@ -13,9 +19,3 @@
   to = "/index.html"
   status = 200
 
-
-[dev]
-  command = "npm start --prefix frontend"
-  targetPort = 3000
-  port = 8888
-  functionsPort = 8889
