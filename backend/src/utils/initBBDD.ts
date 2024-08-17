@@ -6,10 +6,7 @@ const prisma = new PrismaClient();
 async function main() {
   // Crear roles
   const roles = await prisma.role.createMany({
-    data: [
-      { name: 'admin' },
-      { name: 'user' },
-    ],
+    data: [{ name: 'admin' }, { name: 'user' }],
     skipDuplicates: true, // Skip if role already exists
   });
 
@@ -21,6 +18,7 @@ async function main() {
       data: {
         email: faker.internet.email(),
         fullName: faker.name.fullName(),
+        password: 'hashedPassword123', // Asegúrate de incluir la propiedad 'password'
         role: { connect: { id: i % 2 === 0 ? 1 : 2 } }, // Alterna entre admin y user
       },
     });

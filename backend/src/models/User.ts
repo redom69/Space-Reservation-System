@@ -1,4 +1,4 @@
-import { User as PrismaUser, Role, Reservation } from '@prisma/client';
+import { User as PrismaUser, Reservation } from '@prisma/client';
 
 export interface User extends PrismaUser {
   getFullName(): string;
@@ -11,25 +11,36 @@ export interface User extends PrismaUser {
 export class UserImplementation implements User {
   id: string;
   email: string;
-  fullName: string | null;
+  fullName: string;
   roleId: number;
+  password: string;
   createdAt: Date;
-  role: Role | null;
-  reservations?: Reservation[];
 
   constructor(
-    user: PrismaUser & { reservations?: Reservation[] } & { role?: Role }
+    id: string,
+    email: string,
+    fullName: string,
+    roleId: number,
+    password: string
   ) {
-    this.id = user.id;
-    this.email = user.email;
-    this.fullName = user.fullName;
-    this.roleId = user.roleId;
-    this.createdAt = user.createdAt;
-    this.role = user.role || null;
-    this.reservations = user.reservations || [];
+    this.id = id;
+    this.email = email;
+    this.fullName = fullName;
+    this.roleId = roleId;
+    this.password = password;
+    this.createdAt = new Date(); // Corrige la inicialización de createdAt
   }
-
   getFullName(): string {
-    return this.fullName ?? '';
+    throw new Error('Method not implemented.');
   }
+  reservations?:
+    | {
+        id: number;
+        userId: string;
+        spaceId: number;
+        startTime: Date;
+        endTime: Date;
+        createdAt: Date;
+      }[]
+    | undefined;
 }
