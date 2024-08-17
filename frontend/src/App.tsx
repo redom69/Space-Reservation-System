@@ -10,7 +10,6 @@ import RegisterPage from './pages/RegisterPage';
 import Dashboard from './pages/Dashboard';
 import AdminDashboard from './pages/AdminPage';
 import PrivateRoute from './components/PrivateRoute';
-import NotFoundPage from './pages/NotFoundPage';
 
 const App: React.FC = () => {
   return (
@@ -35,7 +34,7 @@ const App: React.FC = () => {
             </PrivateRoute>
           }
         />
-        <Route path="*" element={<NotFoundPage />} />{' '}
+
         {/* Ruta para manejar 404 */}
       </Routes>
     </Router>
