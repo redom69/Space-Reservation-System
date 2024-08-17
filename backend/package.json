@@ -3,9 +3,9 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "start": "ts-node -r tsconfig-paths/register src/server.ts",
+    "start": "node -r tsconfig-paths/register dist/server.js",
     "dev": "nodemon --watch src --exec ts-node -r tsconfig-paths/register src/server.ts",
-    "build": "tsc "
+    "build": "tsc"
   },
   "keywords": [],
   "author": "",

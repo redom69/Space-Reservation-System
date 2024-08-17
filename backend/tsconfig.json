@@ -6,8 +6,8 @@
     "esModuleInterop": true,
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true,
-    "outDir": "dist", // Carpeta de salida será "backend/dist"
-    "rootDir": "./src",
+    "outDir": "dist", // Outputs to the "dist" folder
+    "rootDir": "./src", // The root directory for the source files
     "baseUrl": ".",
     "paths": {
       "@src/*": ["src/*"],

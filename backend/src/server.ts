@@ -1,13 +1,13 @@
 import express from 'express';
 import cors from 'cors';
 import dotenv from 'dotenv';
-import userRoutes from '@routes/userRoutes';
-import reservationRoutes from '@routes/reservationRoutes';
-import spaceRoutes from '@routes/spaceRoutes';
-import roleRoutes from '@routes/roleRoutes';
-import authRoutes from '@routes/auth/authRoutes';
-import logger from '@middleware/logger';
-import { adminOnly } from '@middleware/adminMiddleware';
+import userRoutes from './routes/userRoutes';
+import reservationRoutes from './routes/reservationRoutes';
+import spaceRoutes from './routes/spaceRoutes';
+import roleRoutes from './routes/roleRoutes';
+import authRoutes from './routes/auth/authRoutes';
+import logger from './middleware/logger';
+import { adminOnly } from './middleware/adminMiddleware';
 
 dotenv.config();
 
