@@ -2,7 +2,6 @@
   "name": "frontend",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://redom69.github.io/Space-Reservation-System",
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
