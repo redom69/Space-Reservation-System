@@ -1,13 +1,7 @@
 [build]
-  command = "npm install --prefix frontend && npm install --prefix backend && npm run build --prefix frontend && npx prisma generate --schema=backend/prisma/schema.prisma && npm run build --prefix backend"
+  command = "npm install --prefix frontend && npm install --prefix backend && npx prisma generate --schema=backend/prisma/schema.prisma && npm run build --prefix frontend && npm run build --prefix backend"
   publish = "frontend/build"
   functions = "backend/dist"
-
-[dev]
-  command = "npm start --prefix frontend"
-  targetPort = 3000
-  port = 8888
-  functionsPort = 8889
 
 [[redirects]]
   from = "/api/*"
@@ -18,3 +12,10 @@
   from = "/*"
   to = "/index.html"
   status = 200
+
+
+[dev]
+  command = "npm start --prefix frontend"
+  targetPort = 3000
+  port = 8888
+  functionsPort = 8889

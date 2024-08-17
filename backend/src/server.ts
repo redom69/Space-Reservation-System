@@ -8,6 +8,7 @@ import roleRoutes from './routes/roleRoutes';
 import authRoutes from './routes/auth/authRoutes';
 import logger from './middleware/logger';
 import { adminOnly } from './middleware/adminMiddleware';
+import serverless from 'serverless-http';
 
 dotenv.config();
 
@@ -38,6 +39,13 @@ app.use(
 );
 
 const PORT = process.env.PORT ?? 5000;
-app.listen(PORT, () =>
-  console.log(`Server running on http://localhost:${PORT}`)
-);
+
+// Si estás en un entorno local, inicia el servidor
+if (process.env.NODE_ENV !== 'production') {
+  app.listen(PORT, () =>
+    console.log(`Server running on http://localhost:${PORT}`)
+  );
+}
+
+// Exportar como función serverless para Netlify
+export const handler = serverless(app);
