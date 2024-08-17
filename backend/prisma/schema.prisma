@@ -19,16 +19,18 @@ model Role {
 }
 
 model User {
-  id        String   @id @default(uuid())
-  email     String   @unique
-  fullName  String?
-  roleId    Int
-  role      Role     @relation(fields: [roleId], references: [id])
+  id           String         @id @default(uuid())
+  email        String         @unique
+  password     String         
+  fullName     String?
+  roleId       Int
+  role         Role           @relation(fields: [roleId], references: [id])
   reservations Reservation[]
-  createdAt DateTime @default(now())
+  createdAt    DateTime       @default(now())
 
-  @@schema("auth") 
+  @@schema("auth")
 }
+
 
 model Space {
   id          Int           @id @default(autoincrement())

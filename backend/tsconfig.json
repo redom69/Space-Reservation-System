@@ -7,8 +7,22 @@
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true,
     "outDir": "./dist",
-    "rootDir": "." 
+    "rootDir": ".",
+    "baseUrl": ".",
+    "paths": {
+      "@src/*": ["src/*"],
+      "@controllers/*": ["src/controllers/*"],
+      "@routes/*": ["src/routes/*"],
+      "@utils/*": ["src/utils/*"],
+      "@middleware/*": ["src/middleware/*"],
+      "@services/*": ["src/services/*"]
+    }
   },
-  "include": ["src/**/*.ts", "routes/**/*.ts", "utils/**/*.ts"],  
+  "include": [
+    "src/**/*.ts",
+    "routes/**/*.ts",
+    "utils/**/*.ts",
+    "src/@types/**/*.d.ts"
+  ],
   "exclude": ["node_modules"]
 }

@@ -4,7 +4,8 @@ const prisma = new PrismaClient();
 
 export interface CreateUserInput {
   email: string;
-  fullName: string | null;
+  password: string;
+  fullName?: string;
   roleId: number;
 }
 
@@ -23,7 +24,7 @@ export const getUserById = async (id: string): Promise<User | null> => {
     });
     return user;
   } catch (error) {
-    console.error(`Error fetching user  with id ${id}:`, error);
+    console.error(`Error fetching user with id ${id}:`, error);
     throw new Error('Could not retrieve user');
   }
 };
@@ -47,10 +48,20 @@ export const updateUser = async (
   data: Partial<CreateUserInput>
 ): Promise<User | null> => {
   try {
+    const existingUser = await prisma.user.findUnique({
+      where: { id },
+    });
+
+    if (!existingUser) {
+      console.warn(`User with ID ${id} not found.`);
+      return null;
+    }
+
     const updatedUser = await prisma.user.update({
       where: { id },
       data,
     });
+
     return updatedUser;
   } catch (error) {
     console.error('Error updating user:', error);
@@ -60,6 +71,15 @@ export const updateUser = async (
 
 export const deleteUser = async (id: string): Promise<User | null> => {
   try {
+    const existingUser = await prisma.user.findUnique({
+      where: { id },
+    });
+
+    if (!existingUser) {
+      console.warn(`User with ID ${id} not found.`);
+      return null;
+    }
+
     const deletedUser = await prisma.user.delete({ where: { id } });
     return deletedUser;
   } catch (error) {
@@ -70,8 +90,17 @@ export const deleteUser = async (id: string): Promise<User | null> => {
 
 export const getUserReservations = async (
   id: string
-): Promise<Reservation[] | undefined> => {
+): Promise<Reservation[] | null> => {
   try {
+    const existingUser = await prisma.user.findUnique({
+      where: { id },
+    });
+
+    if (!existingUser) {
+      console.warn(`User with ID ${id} not found.`);
+      return null;
+    }
+
     const user = await prisma.user.findUnique({
       where: { id },
       include: {
@@ -79,7 +108,7 @@ export const getUserReservations = async (
       },
     });
 
-    return user?.reservations;
+    return user?.reservations || null;
   } catch (error) {
     console.error('Error creating user:', error);
     throw new Error('Could not create user');
@@ -88,6 +117,15 @@ export const getUserReservations = async (
 
 export const getUserRole = async (id: string): Promise<Role | null> => {
   try {
+    const existingUser = await prisma.user.findUnique({
+      where: { id },
+    });
+
+    if (!existingUser) {
+      console.warn(`User with ID ${id} not found.`);
+      return null;
+    }
+
     const user = await prisma.user.findUnique({
       where: { id },
       include: {

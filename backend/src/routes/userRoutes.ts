@@ -12,24 +12,24 @@ import {
 const router = Router();
 
 // Obtener todos los usuarios
-router.get('/users', getAllUsersController);
+router.get('/', getAllUsersController);
 
 // Obtener un usuario por ID
-router.get('/users/:id', getUserByIdController);
+router.get('/user/:id', getUserByIdController);
 
 // Crear un nuevo usuario
-router.post('/users', createUserController);
+router.post('/user', createUserController);
 
 // Actualizar un usuario existente
-router.put('/users/:id', updateUserController);
+router.put('/user/:id', updateUserController);
 
 // Eliminar un usuario
-router.delete('/users/:id', deleteUserController);
+router.delete('/user/:id', deleteUserController);
 
 // Obtener todas las reservas de un usuario
-router.get('/users/:id/reservations', getUserReservationsController);
+router.get('/user/:id/reservations', getUserReservationsController);
 
 // Obtener el rol de un usuario
-router.get('/users/:id/role', getUserRoleController);
+router.get('/user/:id/role', getUserRoleController);
 
 export default router;
