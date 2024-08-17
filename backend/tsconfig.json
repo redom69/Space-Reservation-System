@@ -6,7 +6,7 @@
     "esModuleInterop": true,
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true,
-    "outDir": "./dist",
+    "outDir": "../dist/backend", // Cambia outDir para apuntar a dist/backend
     "rootDir": ".",
     "baseUrl": ".",
     "paths": {
