@@ -1,5 +1,6 @@
 [build]
-  command = "npm install --prefix frontend && npm install --prefix backend && npx prisma generate --schema=backend/prisma/schema.prisma && npm run build --prefix frontend && npm run build --prefix backend"
+  # Comando de build que incluye los pasos adicionales de Prisma
+  command = "npm install --prefix frontend && npm install --prefix backend && npx prisma db pull --schema=backend/prisma/schema.prisma && npx prisma generate --schema=backend/prisma/schema.prisma && npm run build --prefix frontend && npm run build --prefix backend"
   publish = "frontend/build"
   functions = "backend/dist"
 
@@ -18,4 +19,3 @@
   from = "/*"
   to = "/index.html"
   status = 200
-
