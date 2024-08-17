@@ -1,5 +1,4 @@
 import express from 'express';
-import serverless from 'serverless-http';
 import cors from 'cors';
 import dotenv from 'dotenv';
 import userRoutes from './routes/userRoutes';
@@ -9,10 +8,12 @@ import roleRoutes from './routes/roleRoutes';
 import authRoutes from './routes/auth/authRoutes';
 import logger from './middleware/logger';
 import { adminOnly } from './middleware/adminMiddleware';
-import { connectToDatabase } from './database';
+import { PrismaClient } from '@prisma/client';
+import serverless from 'serverless-http'; // Importa serverless-http
 
 dotenv.config();
 
+const prisma = new PrismaClient();
 const app = express();
 
 app.use(cors());
@@ -39,7 +40,18 @@ app.use(
   }
 );
 
-// Conectar a la base de datos
+// Verificar la conexión a la base de datos
+async function connectToDatabase() {
+  try {
+    await prisma.$connect();
+    console.log('Conectado a la base de datos exitosamente.');
+  } catch (error) {
+    console.error('Error al conectar a la base de datos:', error);
+    process.exit(1); // Salir si no se puede conectar
+  }
+}
+
+// Llamar a la función de conexión
 connectToDatabase();
 
 // Si estás en un entorno local, inicia el servidor
