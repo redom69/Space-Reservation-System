@@ -3,3 +3,6 @@ frontend/build/
 backend/.env
 frontend/.env
 .vercel
+
+# Local Netlify folder
+.netlify
