@@ -26,7 +26,7 @@ api.interceptors.request.use(
   }
 );
 
-// Interceptor de respuestas para manejar errores globales
+// Interceptor de respuestas para manejar errores globale
 api.interceptors.response.use(
   (response) => response,
   (error) => {
