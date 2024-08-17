@@ -1,13 +1,13 @@
-datasource db {
-  provider = "postgresql"
-  url      = env("DATABASE_URL")
-  directUrl = env("DIRECT_URL")
-  schemas  = ["public", "auth"]  
-}
-
 generator client {
   provider        = "prisma-client-js"
-  previewFeatures = ["multiSchema"]  
+  previewFeatures = ["multiSchema"]
+}
+
+datasource db {
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+  schemas   = ["auth", "public"]
 }
 
 model Role {
@@ -15,32 +15,31 @@ model Role {
   name  String @unique
   users User[]
 
-  @@schema("public")  
+  @@schema("public")
 }
 
 model User {
-  id           String         @id @default(uuid())
-  email        String         @unique
-  password     String         // Campo para la contraseña hash
+  id           String        @id @default(uuid())
+  email        String        @unique
   fullName     String?
   roleId       Int
-  role         Role           @relation(fields: [roleId], references: [id])
+  createdAt    DateTime      @default(now())
+  password     String
+  role         Role          @relation(fields: [roleId], references: [id])
   reservations Reservation[]
-  createdAt    DateTime       @default(now())
 
   @@schema("auth")
 }
 
-
 model Space {
-  id          Int           @id @default(autoincrement())
-  name        String
-  description String?
-  capacity    Int
+  id           Int           @id @default(autoincrement())
+  name         String
+  description  String?
+  capacity     Int
+  createdAt    DateTime      @default(now())
   reservations Reservation[]
-  createdAt   DateTime       @default(now())
 
-  @@schema("public")  
+  @@schema("public")
 }
 
 model Reservation {
@@ -50,10 +49,9 @@ model Reservation {
   startTime DateTime
   endTime   DateTime
   createdAt DateTime @default(now())
-
+  space     Space    @relation(fields: [spaceId], references: [id])
   user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
-  space Space @relation(fields: [spaceId], references: [id])
 
   @@unique([spaceId, startTime, endTime])
-  @@schema("public") 
+  @@schema("public")
 }
