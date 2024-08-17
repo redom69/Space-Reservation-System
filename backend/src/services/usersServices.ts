@@ -69,23 +69,13 @@ export const updateUser = async (
   }
 };
 
-export const deleteUser = async (id: string): Promise<User | null> => {
-  try {
-    const existingUser = await prisma.user.findUnique({
-      where: { id },
-    });
-
-    if (!existingUser) {
-      console.warn(`User with ID ${id} not found.`);
-      return null;
-    }
-
-    const deletedUser = await prisma.user.delete({ where: { id } });
-    return deletedUser;
-  } catch (error) {
-    console.error(`Error deleting user with id ${id}:`, error);
-    throw new Error('Could not delete user');
-  }
+export const deleteUser = async (userId: string) => {
+  const deletedUser = await prisma.user.delete({
+    where: {
+      id: userId,
+    },
+  });
+  return deletedUser;
 };
 
 export const getUserReservations = async (

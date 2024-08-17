@@ -73,12 +73,15 @@ export const updateUserController = async (req: Request, res: Response) => {
 export const deleteUserController = async (req: Request, res: Response) => {
   try {
     const userId = req.params.id;
+    console.log(`Attempting to delete user with ID: ${userId}`); // Debug log
     const deletedUser = await deleteUser(userId);
 
     if (!deletedUser) {
+      console.log('User not found'); // Debug log
       return res.status(404).json({ error: 'User not found' });
     }
 
+    console.log('User successfully deleted'); // Debug log
     res.json(deletedUser);
   } catch (error) {
     console.error('Error deleting user:', error);

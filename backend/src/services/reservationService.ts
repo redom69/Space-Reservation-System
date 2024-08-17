@@ -92,3 +92,20 @@ export const deleteReservation = async (
     throw new Error('Could not delete reservation');
   }
 };
+
+export const getReservationByUser = async (userId: string) => {
+  try {
+    const reservations = await prisma.reservation.findMany({
+      where: {
+        userId: userId,
+      },
+      include: {
+        space: true,
+      },
+    });
+    return reservations;
+  } catch (error) {
+    console.error('Error fetching reservations:', error);
+    throw new Error('Could not fetch reservations');
+  }
+};

@@ -1,0 +1,47 @@
+.p-button-cancel {
+  background-color: #6c757d; /* Gray color */
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.p-button-cancel:hover {
+  background-color: #5a6268; /* Darker gray on hover */
+}
+
+.p-button-save {
+  background-color: #28a745; /* Green color */
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.p-button-save:hover {
+  background-color: #218838; /* Darker green on hover */
+}
+
+.p-button-update {
+  background-color: #ffc107; /* Light orange color */
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.p-button-update:hover {
+  background-color: #e0a800; /* Darker orange on hover */
+}
+
+.p-button-delete {
+  background-color: #dc3545; /* Red color */
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.p-button-delete:hover {
+  background-color: #c82333; /* Darker red on hover */
+}

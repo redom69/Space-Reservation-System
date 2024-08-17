@@ -21,7 +21,7 @@ model Role {
 model User {
   id           String         @id @default(uuid())
   email        String         @unique
-  password     String         
+  password     String         // Campo para la contraseña hash
   fullName     String?
   roleId       Int
   role         Role           @relation(fields: [roleId], references: [id])
@@ -51,7 +51,7 @@ model Reservation {
   endTime   DateTime
   createdAt DateTime @default(now())
 
-  user  User  @relation(fields: [userId], references: [id])
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
   space Space @relation(fields: [spaceId], references: [id])
 
   @@unique([spaceId, startTime, endTime])

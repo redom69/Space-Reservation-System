@@ -7,6 +7,7 @@ import spaceRoutes from '@routes/spaceRoutes';
 import roleRoutes from '@routes/roleRoutes';
 import authRoutes from '@routes/auth/authRoutes';
 import logger from '@middleware/logger';
+import { adminOnly } from '@middleware/adminMiddleware';
 
 dotenv.config();
 
@@ -21,7 +22,7 @@ app.use('/users', userRoutes);
 app.use('/reservations', reservationRoutes);
 app.use('/spaces', spaceRoutes);
 app.use('/roles', roleRoutes);
-app.use('/auth', authRoutes);
+app.use('/auth', authRoutes, adminOnly);
 
 // Middleware de manejo de errores
 app.use(

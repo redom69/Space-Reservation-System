@@ -6,6 +6,7 @@ import {
   updateReservation,
   deleteReservation,
   CreateReservationInput,
+  getReservationByUser,
 } from '../services/reservationService';
 
 // Obtener todas las reservas
@@ -51,7 +52,9 @@ export const createReservationController = async (
   res: Response
 ) => {
   try {
-    const reservationData: CreateReservationInput = req.body;
+    const reservationData: CreateReservationInput = {
+      ...req.body,
+    };
     const newReservation = await createReservation(reservationData);
 
     res.status(201).json(newReservation);
@@ -108,5 +111,27 @@ export const deleteReservationController = async (
       error
     );
     res.status(500).json({ error: 'Could not delete reservation' });
+  }
+};
+
+export const getReservationByUserController = async (
+  req: Request,
+  res: Response
+) => {
+  const userId = req.params.id;
+
+  try {
+    const reservations = await getReservationByUser(userId);
+
+    if (!reservations || reservations.length === 0) {
+      return res
+        .status(404)
+        .json({ error: 'No reservations found for this user' });
+    }
+
+    res.json(reservations);
+  } catch (error) {
+    console.error('Error fetching reservations:', error);
+    res.status(500).json({ error: 'Could not fetch reservations' });
   }
 };

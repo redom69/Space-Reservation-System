@@ -5,6 +5,7 @@ import {
   createReservationController,
   updateReservationController,
   deleteReservationController,
+  getReservationByUserController,
 } from '../controllers/reservationController';
 
 const router = Router();
@@ -14,6 +15,8 @@ router.get('/', getAllReservationsController);
 
 // Obtener una reserva por ID
 router.get('/reservation/:id', getReservationByIdController);
+
+router.get('/user/:id', getReservationByUserController);
 
 // Crear una nueva reserva
 router.post('/reservation', createReservationController);

@@ -17,7 +17,7 @@ export const loginUser = async (
   const isValidPass = await bcrypt.compare(password, user.password);
   if (!isValidPass) throw new Error('Invalid password');
 
-  const payload = { userId: '12345', role: 'admin' };
+  const payload = { userId: user.id, role: user.roleId };
   const secretKey = process.env.jwtokensecret!;
   const options = { expiresIn: '1h' };
   const token = jwt.sign(payload, secretKey, options);
@@ -35,7 +35,7 @@ export const registerUser = async (
   try {
     const user = await prisma.user.findUnique({ where: { email } });
 
-    if (!user) throw new Error('User already exist');
+    if (user) throw new Error('User already exist');
     return await prisma.user.create({
       data: {
         email,

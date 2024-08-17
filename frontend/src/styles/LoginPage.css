@@ -1,0 +1,111 @@
+body {
+  background-color: #0d1117;
+  color: #c9d1d9;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
+    'Helvetica Neue', Arial, 'Noto Sans', sans-serif, 'Apple Color Emoji',
+    'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+}
+
+.login-container {
+  background-color: #161b22;
+  border: 1px solid #30363d;
+  border-radius: 6px;
+  padding: 20px;
+  max-width: 360px;
+  width: 100%;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+  text-align: center;
+}
+
+.login-header {
+  margin-bottom: 20px;
+}
+
+.github-icon {
+  fill: #c9d1d9;
+  margin-bottom: 10px;
+}
+
+.login-header h1 {
+  font-size: 20px;
+  font-weight: 600;
+  color: #c9d1d9;
+}
+
+.login-form label {
+  display: block;
+  text-align: left;
+  margin-bottom: 5px;
+  font-weight: 600;
+}
+
+.login-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Centrar los elementos horizontalmente */
+}
+
+.login-input {
+  width: 100%;
+  padding: 8px;
+  margin: 0 0 15px 0; /* Mantener margen inferior para espacio entre campos */
+  padding-left: 15px; /* Espacio interior a la izquierda */
+  padding-right: 15px; /* Espacio interior a la derecha */
+  border: 1px solid #30363d;
+  border-radius: 6px;
+  background-color: #0d1117;
+  color: #c9d1d9;
+  box-sizing: border-box; /* Asegura que el padding se incluya en el width */
+}
+
+.login-input:focus {
+  border-color: #58a6ff;
+  outline: none;
+}
+
+.login-button {
+  width: 100%;
+  padding: 10px;
+  background-color: #238636;
+  color: white;
+  font-weight: 600;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.login-button:hover {
+  background-color: #2ea043;
+}
+
+.login-footer {
+  margin-top: 15px;
+  font-size: 14px;
+}
+
+.forgot-password {
+  color: #58a6ff;
+  text-decoration: none;
+}
+
+.forgot-password:hover {
+  text-decoration: underline;
+}
+
+.new-account {
+  margin-top: 10px;
+}
+
+.new-account a {
+  color: #58a6ff;
+  text-decoration: none;
+}
+
+.new-account a:hover {
+  text-decoration: underline;
+}

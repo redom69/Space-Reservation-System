@@ -74,24 +74,3 @@ Desarrollo del Frontend
 
 5. Estilos y experiencia de usuario (UX):
    - Aplica estilos globales y personalizados para mejorar la apariencia y usabilidad de la aplicacion.
-
-Pruebas e Integracion
-1. Pruebas de integracion:
-   - Asegurate de que el frontend y backend se comuniquen correctamente y realiza pruebas de flujo completo.
-
-2. Pruebas unitarias:
-   - Escribe pruebas unitarias para funciones clave en el backend y frontend utilizando herramientas como Jest.
-
-3. Optimizacion:
-   - Revisa y optimiza el codigo para mejorar el rendimiento y la eficiencia.
-
-Despliegue
-1. Despliegue del Backend:
-   - Utiliza Heroku o un servicio similar para desplegar el backend. Configura las variables de entorno necesarias en produccion.
-
-2. Despliegue del Frontend:
-   - Despliega el frontend en servicios como Netlify o Vercel. Asegurate de que el frontend este correctamente configurado para interactuar con el backend en produccion.
-
-3. Pruebas en produccion:
-   - Realiza pruebas exhaustivas en el entorno de produccion para asegurarte de que todo funcione como se espera.
-
