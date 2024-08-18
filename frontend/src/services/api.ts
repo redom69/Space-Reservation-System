@@ -2,7 +2,7 @@ import axios from 'axios';
 import { User } from '../types/types';
 
 // Define la URL base de la API, que puede venir de una variable de entorno
-const API_URL = process.env.REACT_APP_API_URL || 'http://localhost:8888';
+const API_URL = process.env.REACT_APP_API_URL || 'http://localhost:5000';
 
 // Configura la instancia de Axios con la URL base
 export const api = axios.create({
